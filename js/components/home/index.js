@@ -13,6 +13,8 @@ import {
   Left,
   Right,
   Body,
+  Card,
+  CardItem,
 } from 'native-base'
 
 import { openDrawer } from '../../actions/drawer'
@@ -40,12 +42,12 @@ class Home extends Component {
 
   render() {
     return (
-      <Container style={{ backgroundColor: '#384850' }}>
+      <Container style={{ backgroundColor: '#bdc3c7' }}>
         <Image source={glow2} style={styles.container}>
           <Header>
             <Left />
             <Body>
-              <Title>Todo</Title>
+              <Title>All Tasks</Title>
             </Body>
             <Right>
               <Button transparent onPress={this.props.openDrawer}>
@@ -54,16 +56,32 @@ class Home extends Component {
             </Right>
           </Header>
 
-          <Content style={{ backgroundColor: 'transparent' }} padder>
-            <Text>Create Something Awesome . . .</Text>
-
-            <Button
-              transparent
-              large
-              style={styles.roundedButton}
-              onPress={() => Actions.login({ type: ActionConst.RESET })}>
-              <Icon name="close" style={styles.closeIcon} />
-            </Button>
+          <Content padder>
+            <Card style={styles.card}>
+              <CardItem>
+                <Body>
+                  <List
+                    dataSource={this.ds.cloneWithRows(this.state.listViewData)}
+                    renderRow={data =>
+                      <ListItem>
+                        <Text>
+                          {' '}{data}{' '}
+                        </Text>
+                      </ListItem>}
+                    renderLeftHiddenRow={data =>
+                      <Button full onPress={() => alert(data)}>
+                        <Icon active name="information-circle" />
+                      </Button>}
+                    renderRightHiddenRow={(data, secId, rowId, rowMap) =>
+                      <Button full danger onPress={_ => this.deleteRow(secId, rowId, rowMap)}>
+                        <Icon active name="trash" />
+                      </Button>}
+                    leftOpenValue={75}
+                    rightOpenValue={-75}
+                  />
+                </Body>
+              </CardItem>
+            </Card>
           </Content>
         </Image>
       </Container>

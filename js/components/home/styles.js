@@ -1,9 +1,14 @@
+const React = require('react-native')
 
-const React = require('react-native');
-
-const { StyleSheet, Platform } = React;
+const { StyleSheet, Platform } = React
 
 export default {
+  card: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ecf0f1',
+    flexDirection: 'column',
+  },
   container: {
     flex: 1,
     width: null,
@@ -27,7 +32,7 @@ export default {
     fontSize: 18,
   },
   closeIcon: {
-    fontSize: (Platform.OS === 'ios') ? 50 : 40,
+    fontSize: Platform.OS === 'ios' ? 50 : 40,
     alignSelf: 'center',
   },
-};
+}

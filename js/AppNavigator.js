@@ -77,7 +77,7 @@ class AppNavigator extends Component {
         <StatusBar backgroundColor="#2980b9" barStyle="light-content" />
         <RouterWithRedux>
           <Scene key="root">
-            <Scene key="home" component={Home} initial />
+            <Scene key="home" component={Home} />
             <Scene key="login" component={Login} hideNavBar />
             <Scene key="signup" component={Signup} />
             <Scene key="blankPage" component={BlankPage} />

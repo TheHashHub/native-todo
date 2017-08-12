@@ -33,6 +33,12 @@ class Login extends Component {
     }
   }
 
+  componentWillMount() {
+    if (this.props.authenticated) {
+      Actions.home()
+    }
+  }
+
   render() {
     return (
       <Container>
@@ -105,6 +111,7 @@ function bindActions(dispatch) {
 const mapStateToProps = state => ({
   navigation: state.cardNavigation,
   loading: state.feedback.loading,
+  authenticated: state.auth.authenticated,
 })
 
 export default connect(mapStateToProps, bindActions)(Login)
